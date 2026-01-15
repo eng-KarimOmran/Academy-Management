@@ -1,0 +1,69 @@
+{
+  "light": "فاتح",
+  "dark": "داكن",
+  "system": "النظام",
+  "validation": {
+    "Name is required": "الاسم مطلوب",
+    "Name must be at least 2 characters": "الاسم يجب أن يكون 2 أحرف على الأقل",
+    "Name must not exceed 50 characters": "الاسم لا يجب أن يتجاوز 50 حرفاً",
+    "Name must contain only Arabic or English letters": "الاسم يجب أن يحتوي على أحرف عربية أو إنجليزية فقط",
+
+    "Username is required": "اسم المستخدم مطلوب",
+    "Username must be at least 3 characters": "اسم المستخدم يجب أن يكون 3 أحرف على الأقل",
+    "Username must not exceed 30 characters": "اسم المستخدم لا يجب أن يتجاوز 30 حرفاً",
+    "Username can contain only English letters, numbers, and (_) character": "اسم المستخدم يجب أن يحتوي على أحرف إنجليزية وأرقام وعلامة (_) فقط",
+
+    "Password is required": "كلمة المرور مطلوبة",
+    "Password must be at least 8 characters": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+    "Password must not exceed 32 characters": "كلمة المرور لا يجب أن تتجاوز 32 حرفاً",
+
+    "Phone number is required": "رقم الهاتف مطلوب",
+    "Invalid phone number (must be an Egyptian mobile number)": "رقم الهاتف غير صحيح (يجب أن يكون رقم موبايل مصري)",
+
+    "Email is required": "الايميل مطلوب",
+    "Invalid email": "الايميل غير صحيح",
+
+    "Amount must be a number": "المبلغ يجب أن يكون رقمًا",
+    "Amount must be a positive number": "المبلغ يجب أن يكون رقمًا موجبًا",
+
+    "ID is required": "المعرف مطلوب",
+
+    "Role value is invalid": "القيمة غير صحيحة",
+    "Training type value is invalid": "نوع التدريب غير صحيح",
+
+    "Description must not exceed 200 characters": "الوصف لا يجب أن يتخطى 200 حرف",
+
+    "Sessions count must be a number": "عدد الحصص يجب أن يكون رقمًا",
+    "Sessions count must be an integer": "عدد الحصص يجب أن يكون رقمًا صحيحًا",
+    "Sessions count must be greater than zero": "عدد الحصص يجب أن يكون أكبر من صفر",
+
+    "Price must be a number": "السعر يجب أن يكون رقمًا",
+    "Price must be a positive number": "السعر يجب أن يكون رقمًا موجبًا",
+
+    "Sale price must be a number": "المبلغ يجب أن يكون رقمًا",
+    "Sale price must be a positive number": "المبلغ يجب أن يكون رقمًا موجبًا",
+
+    "Session duration must be a number": "مدة الحصة يجب أن تكون رقمًا",
+    "Session duration must be an integer": "مدة الحصة يجب أن تكون رقمًا صحيحًا",
+    "Session duration must be at least 50 minutes": "مدة الحصة لا يجب أن تقل عن 50 دقيقة",
+
+    "Address must not exceed 200 characters": "العنوان لا يجب أن يتخطى 200 حرف"
+  },
+  "academy": {
+    "academies": "الأكاديميات",
+    "no academies found": "لم يتم العثور على أي أكاديميات"
+  },
+  "user-role": {
+    "SUPER_ADMIN": "مدير العام",
+    "SECRETARY": "سكرتير",
+    "INSTRUCTOR": "مدرب"
+  },
+  "auth": {
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "type the username": "اكتب اسم المستخدم",
+    "type the password": "اكتب كلمة المرور",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج"
+  }
+}

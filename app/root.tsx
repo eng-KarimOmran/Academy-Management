@@ -1,3 +1,5 @@
+import "@/lib/i18n";
+
 import {
   isRouteErrorResponse,
   Links,
@@ -6,9 +8,16 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useTranslation } from "react-i18next";
+import { ThemeProvider } from "./components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import UserProvider from "./context/user.context";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -19,13 +28,15 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700&display=swap",
   },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { i18n } = useTranslation();
+  const currentDir = i18n.language === "en" ? "ltr" : "rtl";
   return (
-    <html lang="en">
+    <html lang={i18n.language} dir={currentDir}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +44,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ThemeProvider>
+          <QueryClientProvider client={queryClient}>
+            <UserProvider>{children}</UserProvider>
+            <ReactQueryDevtools position="left" buttonPosition="bottom-left" initialIsOpen={false} />
+          </QueryClientProvider>
+          <Toaster richColors position="top-center" />
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -1,0 +1,69 @@
+{
+  "light": "light",
+  "dark": "dark",
+  "system": "system",
+  "validation": {
+    "Name is required": "Name is required",
+    "Name must be at least 2 characters": "Name must be at least 2 characters",
+    "Name must not exceed 50 characters": "Name must not exceed 50 characters",
+    "Name must contain only Arabic or English letters": "Name must contain only Arabic or English letters",
+
+    "Username is required": "Username is required",
+    "Username must be at least 3 characters": "Username must be at least 3 characters",
+    "Username must not exceed 30 characters": "Username must not exceed 30 characters",
+    "Username can contain only English letters, numbers, and (_) character": "Username can contain only English letters, numbers, and (_) character",
+
+    "Password is required": "Password is required",
+    "Password must be at least 8 characters": "Password must be at least 8 characters",
+    "Password must not exceed 32 characters": "Password must not exceed 32 characters",
+
+    "Phone number is required": "Phone number is required",
+    "Invalid phone number (must be an Egyptian mobile number)": "Invalid phone number (must be an Egyptian mobile number)",
+
+    "Email is required": "Email is required",
+    "Invalid email": "Invalid email",
+
+    "Amount must be a number": "Amount must be a number",
+    "Amount must be a positive number": "Amount must be a positive number",
+
+    "ID is required": "ID is required",
+
+    "Role value is invalid": "Role value is invalid",
+    "Training type value is invalid": "Training type value is invalid",
+
+    "Description must not exceed 200 characters": "Description must not exceed 200 characters",
+
+    "Sessions count must be a number": "Sessions count must be a number",
+    "Sessions count must be an integer": "Sessions count must be an integer",
+    "Sessions count must be greater than zero": "Sessions count must be greater than zero",
+
+    "Price must be a number": "Price must be a number",
+    "Price must be a positive number": "Price must be a positive number",
+
+    "Sale price must be a number": "Sale price must be a number",
+    "Sale price must be a positive number": "Sale price must be a positive number",
+
+    "Session duration must be a number": "Session duration must be a number",
+    "Session duration must be an integer": "Session duration must be an integer",
+    "Session duration must be at least 50 minutes": "Session duration must be at least 50 minutes",
+
+    "Address must not exceed 200 characters": "Address must not exceed 200 characters"
+  },
+  "academy": {
+    "academies": "الأكاديميات",
+    "no academies found": "لم يتم العثور على أي أكاديميات"
+  },
+  "user-role": {
+    "SUPER_ADMIN": "General Manager",
+    "SECRETARY": "secretary",
+    "INSTRUCTOR": "instructor"
+  },
+  "auth": {
+    "logout": "logout",
+    "username": "username",
+    "password": "password",
+    "type the username": "type the username",
+    "type the password": "type the password",
+    "login": "login"
+  }
+}
