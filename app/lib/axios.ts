@@ -37,7 +37,7 @@ const refreshAccessToken = async () => {
 };
 
 axiosApi.interceptors.response.use(
-  (response) => response.data,
+  (response) => response,
   async (error: AxiosError<Response<any>>) => {
     if (error.response) {
       const originalRequest = error.config as AxiosRequestConfig;

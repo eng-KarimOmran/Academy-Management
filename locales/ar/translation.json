@@ -1,7 +1,19 @@
 {
-  "light": "فاتح",
-  "dark": "داكن",
-  "system": "النظام",
+  "academy administration": "إدارة الأكاديمية",
+  "control panel for": "لوحة التحكم الخاصة بـ",
+  "dashboard": "لوحة التحكم",
+  "<": ">",
+  "settings": {
+    "settings": "الإعدادات",
+    "the language": "اللغة",
+    "language": "عربي",
+    "current language": "اللغة الحالية",
+    "mode": "الوضع",
+    "current mode": "الوضع الحالي",
+    "system": "النظام",
+    "dark": "داكن",
+    "light": "فاتح"
+  },
   "validation": {
     "Name is required": "الاسم مطلوب",
     "Name must be at least 2 characters": "الاسم يجب أن يكون 2 أحرف على الأقل",
@@ -64,6 +76,23 @@
     "type the username": "اكتب اسم المستخدم",
     "type the password": "اكتب كلمة المرور",
     "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "Are you sure you want to log out": "هل أنت متأكد من رغبتك في تسجيل الخروج؟",
+    "Log out of Academy Management as": "قم بتسجيل الخروج من إدارة الأكاديمية بصفتك",
+    "Log out of this device only": "تسجيل الخروج من هذا الجهاز فقط",
+    "Log out of all devices": "تسجيل الخروج من جميع الأجهزة"
+  },
+  "action": {
+    "cancel": "الغاء",
+    "continue": "تأكيد"
+  },
+  "entity": {
+    "users": "المستخدمين",
+    "instructors": "المدربين",
+    "courses": "البرامج",
+    "academies": "الأكاديميات",
+    "dashboard": "لوحة التحكم",
+    "settings": "الإعدادات",
     "logout": "تسجيل الخروج"
   }
 }

@@ -27,19 +27,19 @@ export function ModeToggle() {
           className="capitalize"
           onClick={() => setTheme("light")}
         >
-          {t("light")}
+          {t("settings.light")}
         </DropdownMenuItem>
         <DropdownMenuItem
           className="capitalize"
           onClick={() => setTheme("dark")}
         >
-          {t("dark")}
+          {t("settings.dark")}
         </DropdownMenuItem>
         <DropdownMenuItem
           className="capitalize"
           onClick={() => setTheme("system")}
         >
-          {t("system")}
+          {t("settings.system")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

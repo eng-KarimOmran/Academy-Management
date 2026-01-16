@@ -4,5 +4,5 @@ export interface User {
   id: string;
   name: string;
   role: UserRole | string;
-  userName: string;
+  username: string;
 }

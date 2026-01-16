@@ -25,14 +25,14 @@ export interface ICustomForm<T> {
   inputs: IInput<T>[];
   formId: string;
   loading: boolean;
-  onSubmit: (data: T) => any;
+  submit: (data: T) => any;
   setLoading: (loading: boolean) => void;
   successFn?: (data: Response<any>) => any;
 }
 
 export const CustomForm = <T extends FormikValues>({
   initialValues,
-  onSubmit,
+  submit,
   validationSchema,
   inputs,
   formId,
@@ -48,8 +48,9 @@ export const CustomForm = <T extends FormikValues>({
       onSubmit={async (data) => {
         setLoading(true);
         try {
-          const res = (await onSubmit(data)) as Response<any>;
-          successFn?.(res);
+          const res = await submit(data);
+          const dataRes = res.data as Response<any>;
+          successFn?.(dataRes);
         } catch (error) {
           const err = error as Response<any>;
           toast.error(err.message);

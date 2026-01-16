@@ -34,7 +34,7 @@ export default function SideHeader() {
     queryKey: ["academy"],
     queryFn: getAllAcademy,
     staleTime: Infinity,
-    select: (axiosRes) => axiosRes.data as Academy[],
+    select: (axiosRes) => axiosRes.data.data as Academy[],
   });
 
   const [activeAcademy, setActiveAcademy] = useState<Academy | null>(null);

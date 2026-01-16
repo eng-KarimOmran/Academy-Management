@@ -14,19 +14,19 @@ import type { LoginDTO } from "@/DTO/auth.DTO";
 import { loginSchema } from "@/validation/auth.validation";
 import { useContext, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
-import axiosApi from "@/lib/axios";
-import type { Response } from "@/type/type";
-import type { User } from "~/type/user";
 import { userContext } from "@/context/user.context";
 import { useNavigate } from "react-router";
 import { login } from "~/service/auth";
+import i18n from "@/lib/i18n";
 
 export function meta({}: Route.MetaArgs) {
+  const { t } = i18n;
+  const title = t("auth.login");
   return [
-    { title: "تسجيل الدخول | إدارة الأكاديمية" },
+    { title: `${title} | ${t("academy administration")}` },
     {
       name: "description",
-      content: "قم بتسجيل الدخول للوصول إلى لوحة التحكم الخاصة بك",
+      content: title,
     },
   ];
 }
@@ -63,8 +63,8 @@ export default function Login() {
         type: "password",
       },
     ],
-    onSubmit: login,
-    successFn: (data: Response<User>) => {
+    submit: login,
+    successFn: (data) => {
       setIsLogin(true);
       setUser(data.data);
       navigate("/dashboard", {

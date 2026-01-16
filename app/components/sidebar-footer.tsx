@@ -19,7 +19,6 @@ import { useContext } from "react";
 import { userContext } from "~/context/user.context";
 import { useTranslation } from "react-i18next";
 import { ChevronsUpDown, LogOut } from "lucide-react";
-import { Button } from "./ui/button";
 import { Link } from "react-router";
 
 export default function SideFooter() {

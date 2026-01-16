@@ -2,6 +2,21 @@
   "light": "light",
   "dark": "dark",
   "system": "system",
+  "dashboard": "Dashboard",
+  "academy administration": "Academy Administration",
+  "control panel for": "Control panel for",
+  "<": "<",
+  "settings": {
+    "settings": "Settings",
+    "the language": "The Language",
+    "language": "English",
+    "current language": "Current Language",
+    "mode": "Mode",
+    "current mode": "Current Mode",
+    "system": "system",
+    "dark": "dark",
+    "light": "light"
+  },
   "validation": {
     "Name is required": "Name is required",
     "Name must be at least 2 characters": "Name must be at least 2 characters",
@@ -64,6 +79,23 @@
     "password": "password",
     "type the username": "type the username",
     "type the password": "type the password",
-    "login": "login"
+    "login": "login",
+    "Are you sure you want to log out": "Are you sure you want to log out?",
+    "Log out of Academy Management as": "Log out of Academy Management as",
+    "Log out of this device only": "Log out of this device only",
+    "Log out of all devices": "Log out of all devices"
+  },
+  "action": {
+    "cancel": "cancel",
+    "continue": "continue"
+  },
+  "entity": {
+    "users": "Users",
+    "instructors": "Instructors",
+    "courses": "Courses",
+    "academies": "Academies",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "logout": "logout"
   }
 }

@@ -14,7 +14,7 @@ interface UserContextType {
 const initialValuesUser: User = {
   id: "",
   name: "",
-  userName: "",
+  username: "",
   role: "",
 };
 
