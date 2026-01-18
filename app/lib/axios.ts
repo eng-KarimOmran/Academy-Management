@@ -1,6 +1,6 @@
 import axios, { AxiosError, type AxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
-import type { Response } from "@/type/type";
+import type { ErrorResponse } from "@/type/type";
 
 let academyId: string = "";
 
@@ -38,7 +38,7 @@ const refreshAccessToken = async () => {
 
 axiosApi.interceptors.response.use(
   (response) => response,
-  async (error: AxiosError<Response<any>>) => {
+  async (error: AxiosError<ErrorResponse>) => {
     if (error.response) {
       const originalRequest = error.config as AxiosRequestConfig;
       const status = error.response.status;
@@ -54,11 +54,10 @@ axiosApi.interceptors.response.use(
 
       return Promise.reject(error.response.data);
     }
-    const errorResponse: Response<any> = {
+    const errorResponse: ErrorResponse = {
       message: "خطأ غير متوقع",
       statusCode: 500,
       success: false,
-      data: null,
     };
     return Promise.reject(errorResponse);
   }

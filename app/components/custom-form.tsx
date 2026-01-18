@@ -5,9 +5,9 @@ import { toFormikValidationSchema } from "zod-formik-adapter";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { toast } from "sonner";
-import type { Response } from "@/type/type";
 import { useTranslation } from "react-i18next";
-import type { AxiosPromise } from "axios";
+import type { ErrorResponse, SuccessResponse } from "@/type/type";
+import { type RefObject } from "react";
 
 export interface IInput<T> {
   id: string;
@@ -19,65 +19,75 @@ export interface IInput<T> {
   required?: boolean;
 }
 
-export interface ICustomForm<T> {
+export interface ICustomForm<T, J> {
   initialValues: T;
-  validationSchema: ZodObject;
+  validationSchema: ZodObject<any>;
   inputs: IInput<T>[];
-  formId: string;
-  loading: boolean;
-  submit: (data: T) => any;
-  setLoading: (loading: boolean) => void;
-  successFn?: (data: Response<any>) => any;
+  formRef?: RefObject<HTMLFormElement | null>;
+  isSubmitting?: boolean;
+  setIsSubmitting?: (isSubmitting: boolean) => void;
+  submit: (data: T) => Promise<SuccessResponse<J>>;
+  successFn?: (data: J) => any;
 }
 
-export const CustomForm = <T extends FormikValues>({
+export const FormikCustom = <T extends FormikValues, J>({
   initialValues,
   submit,
   validationSchema,
   inputs,
-  formId,
-  loading,
-  setLoading,
   successFn,
-}: ICustomForm<T>) => {
+  formRef,
+  isSubmitting,
+  setIsSubmitting,
+}: ICustomForm<T, J>) => {
   const { t } = useTranslation();
+
   return (
     <Formik<T>
       initialValues={initialValues}
+      enableReinitialize={true}
       validationSchema={toFormikValidationSchema(validationSchema)}
       onSubmit={async (data) => {
-        setLoading(true);
         try {
+          setIsSubmitting && setIsSubmitting(true);
           const res = await submit(data);
-          const dataRes = res.data as Response<any>;
+          const dataRes = res.data.data;
+          toast.success(res.data.message);
           successFn?.(dataRes);
         } catch (error) {
-          const err = error as Response<any>;
+          const err = error as ErrorResponse;
           toast.error(err.message);
         } finally {
-          setLoading(false);
+          setIsSubmitting && setIsSubmitting(false);
         }
       }}
-      enableReinitialize={true}
     >
-      {(props: FormikProps<any>) => (
-        <Form id={formId} className="flex flex-col gap-6">
+      {(props: FormikProps<T>) => (
+        <Form ref={formRef} className="flex flex-col gap-6">
           {inputs.map((input) => (
             <div key={input.id} className="grid gap-2">
               <Label htmlFor={input.id} className="capitalize">
                 {input.label}
               </Label>
+
               <Input
                 id={input.id}
                 type={input.type}
                 placeholder={input.placeholder}
                 required={input.required}
-                disabled={input.disabled || loading}
+                disabled={input.disabled || isSubmitting}
                 {...props.getFieldProps(input.name)}
               />
-              <ErrorMessage name={input.name}>
+
+              <ErrorMessage name={input.name as string}>
                 {(errorMessage) => (
-                  <div className="text-red-500 text-xs">
+                  <div
+                    style={{
+                      color: "red",
+                      fontSize: "14px",
+                      textAlign: "start",
+                    }}
+                  >
                     {t(`validation.${errorMessage}`)}
                   </div>
                 )}

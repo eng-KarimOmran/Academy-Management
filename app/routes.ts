@@ -1,5 +1,4 @@
-import {
-  type RouteConfig,
+import { type RouteConfig,
   index,
   layout,
   route,
@@ -13,7 +12,19 @@ export default [
     route("dashboard", "routes/protected-route/dashboard/dashboard.tsx"),
     route(
       "dashboard/:entity",
-      "routes/protected-route/dashboard/entity/entity.tsx"
+      "routes/protected-route/dashboard/entity/entity.tsx",
+    ),
+    route(
+      "dashboard/:entity/delete/:id",
+      "routes/protected-route/dashboard/entity/delete.tsx",
+    ),
+    route(
+      "dashboard/:entity/add",
+      "routes/protected-route/dashboard/entity/add.tsx",
+    ),
+    route(
+      "dashboard/:entity/update/:id",
+      "routes/protected-route/dashboard/entity/update.tsx",
     ),
   ]),
 ] satisfies RouteConfig;

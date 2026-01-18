@@ -14,7 +14,6 @@ export default function SiteHeader() {
       path: `/${parts.slice(0, i + 1).join("/")}`,
     };
   });
-  console.log(links);
   return (
     <header className="h-10 py-3 flex items-center gap-2">
       <SidebarTrigger />

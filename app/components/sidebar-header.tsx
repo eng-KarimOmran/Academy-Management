@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useContext, useEffect } from "react";
 import {
   SidebarHeader,
   SidebarMenu,
@@ -7,8 +6,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "./ui/sidebar";
-import { getAllAcademy } from "@/service/academy";
-import type { Academy } from "@/type/academy";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,54 +14,13 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { ChevronsUpDown, School } from "lucide-react";
-import { toast } from "sonner";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
-import Cookies from "js-cookie";
+import { academyContext } from "~/context/academy.context";
 
 export default function SideHeader() {
   const { isMobile } = useSidebar();
   const { t } = useTranslation();
-
-  const {
-    data: academies,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["academy"],
-    queryFn: getAllAcademy,
-    staleTime: Infinity,
-    select: (axiosRes) => axiosRes.data.data as Academy[],
-  });
-
-  const [activeAcademy, setActiveAcademy] = useState<Academy | null>(null);
-
-  useEffect(() => {
-    if (academies?.length && !activeAcademy) {
-      const savedId = Cookies.get("academyId");
-      const found = academies.find((a) => a.id === savedId);
-      setActiveAcademy(found || academies[0]);
-    }
-  }, [academies, activeAcademy]);
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error.message);
-    }
-  }, [error]);
-
-  const handleAcademyChange = (academy: Academy) => {
-    setActiveAcademy(academy);
-    Cookies.set("academyId", academy.id, { expires: 7 });
-  };
-
-  if (isLoading) {
-    return (
-      <div className="p-4">
-        <Skeleton className="h-12 w-full rounded-lg" />
-      </div>
-    );
-  }
+  const { activeAcademy, setActiveAcademy, academies } = useContext(academyContext);
 
   return (
     <SidebarHeader>
@@ -107,7 +63,7 @@ export default function SideHeader() {
                 {academies.map((academy) => (
                   <DropdownMenuItem
                     key={academy.id}
-                    onClick={() => handleAcademyChange(academy)}
+                    onClick={() => setActiveAcademy(academy)}
                     className="gap-2 p-2 cursor-pointer"
                   >
                     <div className="flex size-6 items-center justify-center rounded-md border bg-background">

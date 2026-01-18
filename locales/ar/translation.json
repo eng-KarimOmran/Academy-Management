@@ -1,7 +1,7 @@
 {
-  "academy administration": "إدارة الأكاديمية",
   "control panel for": "لوحة التحكم الخاصة بـ",
   "dashboard": "لوحة التحكم",
+  "administration": "إدارة",
   "<": ">",
   "settings": {
     "settings": "الإعدادات",
@@ -63,7 +63,8 @@
   },
   "academy": {
     "academies": "الأكاديميات",
-    "no academies found": "لم يتم العثور على أي أكاديميات"
+    "no academies found": "لم يتم العثور على أي أكاديميات",
+    "academy": "أكاديمية"
   },
   "user-role": {
     "SUPER_ADMIN": "مدير العام",
@@ -83,8 +84,18 @@
     "Log out of all devices": "تسجيل الخروج من جميع الأجهزة"
   },
   "action": {
+    "actions": "الإجراءات",
     "cancel": "الغاء",
-    "continue": "تأكيد"
+    "continue": "تأكيد",
+    "add": "إضافة",
+    "search": "بحث",
+    "next": "التالي",
+    "previous": "السابق",
+    "delete": "حذف",
+    "update": "تعديل",
+    "watch": "عرض",
+    "whatsapp": "وتساب",
+    "are you sure you want to delete":"هل أنت متأكد من حذف"
   },
   "entity": {
     "users": "المستخدمين",
@@ -94,5 +105,8 @@
     "dashboard": "لوحة التحكم",
     "settings": "الإعدادات",
     "logout": "تسجيل الخروج"
+  },
+  "table": {
+    "no data available": "no data available"
   }
 }

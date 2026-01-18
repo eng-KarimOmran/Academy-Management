@@ -3,20 +3,20 @@ import { userContext } from "@/context/user.context";
 import { useTranslation } from "react-i18next";
 import type { IAlertDialog } from "@/components/custom-alert-dialog";
 import CustomAlertDialog from "@/components/custom-alert-dialog";
-import { logout } from "@/service/auth";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
-import type { Response } from "@/type/type";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import type { Route } from "./+types/dashboard";
 import i18n from "@/lib/i18n";
+import type { Route } from "./+types/logout";
+import type { ErrorResponse } from "~/type/type";
+import api from "@/service/auth";
 
 export function meta({}: Route.MetaArgs) {
   const { t } = i18n;
   const title = t("auth.logout");
   return [
-    { title: `${title} | ${t("academy administration")}` },
+    { title: `${title} | ${t("administration")} ${t("academy.academy")}` },
     {
       name: "description",
       content: title,
@@ -34,12 +34,12 @@ export default function Logout() {
   const action = async () => {
     setLoading(true);
     try {
-      await logout(device);
+      await api.logout(device);
       setIsLogin(false);
       clear();
       navigate("/");
     } catch (error) {
-      const err = error as Response<any>;
+      const err = error as ErrorResponse;
       toast.error(err.message);
     } finally {
       setLoading(false);

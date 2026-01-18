@@ -1,11 +1,8 @@
 {
-  "light": "light",
-  "dark": "dark",
-  "system": "system",
   "dashboard": "Dashboard",
-  "academy administration": "Academy Administration",
+  "administration": "Administration",
   "control panel for": "Control panel for",
-  "<": "<",
+  "<": ">",
   "settings": {
     "settings": "Settings",
     "the language": "The Language",
@@ -65,8 +62,9 @@
     "Address must not exceed 200 characters": "Address must not exceed 200 characters"
   },
   "academy": {
-    "academies": "الأكاديميات",
-    "no academies found": "لم يتم العثور على أي أكاديميات"
+    "academies": "academies",
+    "no academies found": "no academies found",
+    "academy": "Academy"
   },
   "user-role": {
     "SUPER_ADMIN": "General Manager",
@@ -86,8 +84,18 @@
     "Log out of all devices": "Log out of all devices"
   },
   "action": {
+    "actions": "Actions",
     "cancel": "cancel",
-    "continue": "continue"
+    "continue": "continue",
+    "add": "add",
+    "search": "search",
+    "next": "next",
+    "previous": "previous",
+    "delete": "delete",
+    "update": "update",
+    "watch": "watch",
+    "whatsapp": "whatsapp",
+    "are you sure you want to delete": "are you sure you want to delete"
   },
   "entity": {
     "users": "Users",

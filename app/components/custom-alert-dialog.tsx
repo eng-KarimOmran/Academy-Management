@@ -13,47 +13,53 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { Spinner } from "./ui/spinner";
 import type { ReactNode } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 export interface IAlertDialog<T> {
   title: string;
   description?: string;
   action: (data?: T) => any;
   children?: ReactNode;
-  formId?: string;
-  loading: boolean;
-  setLoading: (loading: boolean) => void;
+  loading?: boolean;
+  setLoading?: (loading: boolean) => void;
+  isLoading?: boolean;
 }
 export default function CustomAlertDialog<T>({
   action,
   description,
   title,
   children,
-  formId,
   loading,
+  isLoading,
 }: IAlertDialog<T>) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <AlertDialog defaultOpen={true}>
-      <AlertDialogOverlay className="bg-black/50 backdrop-blur-md" />
+      <AlertDialogOverlay className="bg-black/20 backdrop-blur-lg" />
       <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="text-start">{title}</AlertDialogTitle>
-          {description && (
-            <AlertDialogDescription className="text-start">
-              {description}
-            </AlertDialogDescription>
-          )}
-        </AlertDialogHeader>
-        {children}
+        {isLoading ? (
+          <Skeleton className="w-full h-40 p-5" />
+        ) : (
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-start">{title}</AlertDialogTitle>
+            {description && (
+              <AlertDialogDescription className="text-start">
+                {description}
+              </AlertDialogDescription>
+            )}
+            {children}
+          </AlertDialogHeader>
+        )}
         <AlertDialogFooter>
           <AlertDialogAction
-            form={formId}
             type="submit"
-            disabled={loading}
+            disabled={loading || isLoading}
             onClick={(e) => {
               e.preventDefault();
-              action();
+              {
+                action && action();
+              }
             }}
           >
             {loading && <Spinner />}

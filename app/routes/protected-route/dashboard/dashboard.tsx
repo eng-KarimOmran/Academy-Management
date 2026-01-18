@@ -5,7 +5,7 @@ export function meta({}: Route.MetaArgs) {
   const { t } = i18n;
   const title = t("dashboard");
   return [
-    { title: `${title} | ${t("academy administration")}` },
+    { title: `${title} | ${t("administration")} ${t("academy.academy")}` },
     {
       name: "description",
       content: title,

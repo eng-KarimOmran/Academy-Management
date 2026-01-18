@@ -9,21 +9,22 @@ import {
 } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 import { CarFront } from "lucide-react";
-import { CustomForm, type ICustomForm } from "@/components/custom-form";
 import type { LoginDTO } from "@/DTO/auth.DTO";
 import { loginSchema } from "@/validation/auth.validation";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { userContext } from "@/context/user.context";
 import { useNavigate } from "react-router";
-import { login } from "~/service/auth";
 import i18n from "@/lib/i18n";
+import type { User } from "@/type/user";
+import { FormikCustom, type ICustomForm } from "~/components/custom-form";
+import api from "@/service/auth";
 
 export function meta({}: Route.MetaArgs) {
   const { t } = i18n;
   const title = t("auth.login");
   return [
-    { title: `${title} | ${t("academy administration")}` },
+    { title: `${title} | ${t("administration")} ${t("academy.academy")}` },
     {
       name: "description",
       content: title,
@@ -33,18 +34,17 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Login() {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
   const { setIsLogin, setUser } = useContext(userContext);
   const navigate = useNavigate();
-  const config: ICustomForm<LoginDTO> = {
-    formId: "login-form",
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const config: ICustomForm<LoginDTO, User> = {
     initialValues: {
       username: "",
       password: "",
     },
     validationSchema: loginSchema,
-    loading,
-    setLoading,
     inputs: [
       {
         id: "username",
@@ -63,10 +63,10 @@ export default function Login() {
         type: "password",
       },
     ],
-    submit: login,
+    submit: api.login,
     successFn: (data) => {
       setIsLogin(true);
-      setUser(data.data);
+      setUser(data);
       navigate("/dashboard", {
         replace: true,
       });
@@ -77,22 +77,27 @@ export default function Login() {
     <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>
-          <div className="p-4 rounded-2xl shadow-lg bg-linear-to-br from-primary to-primary/80 size-17 flex items-center justify-center mx-auto transition-transform hover:scale-105 text-white">
+          <div className="p-4 rounded-2xl shadow-lg bg-linear-to-br from-primary to-primary/80 size-17 flex items-center justify-center mx-auto transition-all hover:scale-105 text-white">
             <CarFront size={48} strokeWidth={2.5} />
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <CustomForm {...config} />
+        <FormikCustom
+          {...config}
+          formRef={formRef}
+          setIsSubmitting={setIsSubmitting}
+          isSubmitting={isSubmitting}
+        />
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button
           type="submit"
           className="w-full"
-          form={config.formId}
-          disabled={loading}
+          disabled={isSubmitting}
+          onClick={() => formRef?.current?.requestSubmit()}
         >
-          {loading && <Spinner />}
+          {isSubmitting && <Spinner />}
           {t("auth.login")}
         </Button>
       </CardFooter>

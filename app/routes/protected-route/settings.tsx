@@ -10,7 +10,7 @@ export function meta({}: Route.MetaArgs) {
   const { t } = i18n;
   const title = t("settings.settings");
   return [
-    { title: `${title} | ${t("academy administration")}` },
+    { title: `${title} | ${t("administration")} ${t("academy.academy")}` },
     {
       name: "description",
       content: title,
@@ -45,7 +45,7 @@ export default function Settings() {
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5 gap-5">
       {arrSettings.map((s) => (
         <div
-          className="bg-sidebar p-5 rounded-md shadow-lg flex justify-between items-center"
+          className="bg-sidebar p-5 rounded-md shadow-sm flex justify-between items-center"
           key={s.title}
         >
           <div className="flex flex-col gap-4">

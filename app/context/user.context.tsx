@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import type { User } from "~/type/user";
-import type { Response } from "@/type/type";
-import axios from "axios";
+import type { User } from "@/type/user";
+import api from "@/service/auth";
 
 interface UserContextType {
   user: User;
@@ -45,18 +44,8 @@ export default function UserProvider({
   useEffect(() => {
     const checkLogin = async () => {
       try {
-        const res = await axios.get(
-          import.meta.env.VITE_API_URL + "/auth/is-login",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        const data = res.data as Response<User>;
-        setUser(data.data);
+        const res = await api.isLogin();
+        setUser(res.data.data);
         setIsLogin(true);
       } catch (err) {
         clear();

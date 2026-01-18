@@ -3,5 +3,5 @@ export interface Academy {
   name: string;
   owner: string;
   address: string;
-  createdAt: Date;
+  createdAt: string;
 }
