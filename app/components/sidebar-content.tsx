@@ -9,7 +9,7 @@ import {
 } from "./ui/sidebar";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { LayoutDashboard, School, Settings } from "lucide-react";
+import { LayoutDashboard, Route, School, Settings } from "lucide-react";
 
 export interface LinkNav {
   title: string;
@@ -30,7 +30,13 @@ export default function SideContent() {
       path: "/dashboard/academies",
       icon: <School />,
     },
+    {
+      title: t("entity.courses"),
+      path: "/dashboard/courses",
+      icon: <Route />,
+    },
   ];
+
   const navBottom: LinkNav[] = [
     {
       title: t("settings.settings"),

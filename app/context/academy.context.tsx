@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
-import type { Academy } from "@/type/academy";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
-import api from "@/service/academy";
+import api from "@/service/academy.api";
+import type { Academy } from "@/type/entity";
 
 interface AcademyContextType {
   academies: Academy[];
@@ -28,8 +28,7 @@ export default function AcademyProvider({
   children: React.ReactNode;
 }) {
   const [academies, setAcademies] = useState<Academy[]>([]);
-  const [activeAcademy, setActiveAcademyState] =
-    useState<Academy | null>(null);
+  const [activeAcademy, setActiveAcademy] = useState<Academy | null>(null);
 
   const { data, error } = useQuery({
     queryKey: ["academies"],
@@ -38,18 +37,22 @@ export default function AcademyProvider({
     select: (res) => res.data.data.items,
   });
 
-
   useEffect(() => {
-    if (!data || data.length === 0) return;
-
+    if (!data || data.length === 0) {
+      setActiveAcademy(null);
+      Cookies.remove("academyId");
+      return;
+    }
     setAcademies(data);
-
     const savedId = Cookies.get("academyId");
     const found = data.find((a) => a.id === savedId);
-
-    setActiveAcademyState(found || data[0]);
+    setActiveAcademy(found || data[0]);
   }, [data]);
 
+  useEffect(() => {
+    if (!activeAcademy) return;
+    Cookies.set("academyId", activeAcademy.id, { expires: 7 });
+  }, [activeAcademy]);
 
   useEffect(() => {
     if (error) {
@@ -57,30 +60,15 @@ export default function AcademyProvider({
     }
   }, [error]);
 
-
-  const setActiveAcademy = (academy: Academy) => {
-    setActiveAcademyState(academy);
-    Cookies.set("academyId", academy.id, { expires: 7 });
-  };
-
   const clear = () => {
-    setActiveAcademyState(null);
+    setActiveAcademy(null);
     Cookies.remove("academyId");
   };
 
-
-  const value = useMemo(
-    () => ({
-      academies,
-      activeAcademy,
-      setActiveAcademy,
-      clear,
-    }),
-    [academies, activeAcademy],
-  );
-
   return (
-    <academyContext.Provider value={value}>
+    <academyContext.Provider
+      value={{ setActiveAcademy, academies, clear, activeAcademy }}
+    >
       {children}
     </academyContext.Provider>
   );

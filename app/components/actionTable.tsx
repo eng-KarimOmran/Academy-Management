@@ -11,7 +11,6 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
 import { IoLogoWhatsapp } from "react-icons/io";
 import type { ReactNode } from "react";
-import { Button } from "./ui/button";
 
 export type Action = "delete" | "update" | "whatsapp" | "watch";
 

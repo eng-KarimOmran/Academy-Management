@@ -1,19 +1,12 @@
 import axios, { AxiosError, type AxiosRequestConfig } from "axios";
-import Cookies from "js-cookie";
 import type { ErrorResponse } from "@/type/type";
-
-let academyId: string = "";
-
-if (typeof window !== undefined) {
-  academyId = Cookies.get("academyId") || "";
-}
+import Cookies from "js-cookie";
 
 const axiosApi = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    academyId,
   },
   withCredentials: true,
 });
@@ -28,13 +21,25 @@ const refreshAccessToken = async () => {
           Accept: "application/json",
         },
         withCredentials: true,
-      }
+      },
     );
     return res.data;
   } catch (err) {
     throw err;
   }
 };
+
+axiosApi.interceptors.request.use((config) => {
+  const academyId = Cookies.get("academyId");
+
+  if (academyId) {
+    config.headers["academy-id"] = academyId;
+  } else {
+    delete config.headers["academy-id"];
+  }
+
+  return config;
+});
 
 axiosApi.interceptors.response.use(
   (response) => response,
@@ -60,7 +65,7 @@ axiosApi.interceptors.response.use(
       success: false,
     };
     return Promise.reject(errorResponse);
-  }
+  },
 );
 
 export default axiosApi;

@@ -13,20 +13,20 @@ import type { Action } from "./actionTable";
 import ActionTable from "./actionTable";
 
 interface BaseRow {
-  id: string | number;
+  id: string;
 }
 
 export interface Column<T extends BaseRow> {
-  key: Extract<keyof T, string | number>;
-  label: string;
+  key: Extract<keyof T, string>;
   display: (data: any) => ReactNode;
 }
 
 export interface ICustomTable<T extends BaseRow> {
   columns: Column<T>[];
   rows: T[];
-  isLoading: boolean;
+  isLoading?: boolean;
   actions?: Action[];
+  entity: string;
 }
 
 export default function CustomTable<T extends BaseRow>({
@@ -34,6 +34,7 @@ export default function CustomTable<T extends BaseRow>({
   rows,
   isLoading,
   actions,
+  entity,
 }: ICustomTable<T>) {
   const { t } = useTranslation();
 
@@ -43,7 +44,7 @@ export default function CustomTable<T extends BaseRow>({
         <TableRow className="border-zinc-400 dark:border-zinc-700 h-12">
           {columns.map((col) => (
             <TableHead className="text-center" key={col.key}>
-              {t(col.label)}
+              {t(`generalValues.${col.key}`)}
             </TableHead>
           ))}
         </TableRow>
@@ -79,7 +80,7 @@ export default function CustomTable<T extends BaseRow>({
               colSpan={columns.length}
               className="text-center col-span-5 capitalize"
             >
-              {t("table.no data available")}
+              {t(`${entity}.there are no`)}
             </TableCell>
           </TableRow>
         )}

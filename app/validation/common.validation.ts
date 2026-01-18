@@ -6,7 +6,7 @@ export const name = z
   .max(50, "Name must not exceed 50 characters")
   .regex(
     /^[\u0621-\u064Aa-zA-Z\s]+$/,
-    "Name must contain only Arabic or English letters"
+    "Name must contain only Arabic or English letters",
   );
 
 export const username = z
@@ -15,7 +15,7 @@ export const username = z
   .max(30, "Username is too long")
   .regex(
     /^[a-zA-Z0-9_]+$/,
-    "Username can contain only English letters, numbers, and (_) character"
+    "Username can contain only English letters, numbers, and (_) character",
   );
 
 export const password = z
@@ -27,7 +27,7 @@ export const egyptianPhone = z
   .string("Phone number is required")
   .regex(
     /^01[0125][0-9]{8}$/,
-    "Invalid phone number (must be an Egyptian mobile number)"
+    "Invalid phone number (must be an Egyptian mobile number)",
   );
 
 export const amount = z.number().positive("Amount must be a positive number");
@@ -36,19 +36,17 @@ export const id = z.string("ID is required");
 
 export const role = z.enum(
   UserRole,
-  `Value must be one of (${Object.values(UserRole).join(" | ")})`
+  `Value must be one of (${Object.values(UserRole).join(" | ")})`,
 );
 
 export const trainingType = z.enum(
   TransmissionType,
-  `Value must be one of (${Object.values(TransmissionType).join(" | ")})`
+  `Value must be one of (${Object.values(TransmissionType).join(" | ")})`,
 );
 
 export const description = z
   .string()
-  .max(200, "Description must not exceed 200 characters")
-  .optional()
-  .nullable();
+  .max(200, "Description must not exceed 200 characters");
 
 export const sessionsCount = z.coerce
   .number("Sessions count is required")
@@ -62,6 +60,7 @@ export const price = z.coerce
 export const salePrice = z.coerce
   .number()
   .positive("Sale price must be a positive number")
+  .nullable()
   .optional();
 
 export const sessionDuration = z.coerce
@@ -73,5 +72,5 @@ export const sessionDuration = z.coerce
 export const email = z.email("Invalid email");
 
 export const address = z
-  .string()
+  .string("Address is required")
   .max(200, "Address must not exceed 200 characters");

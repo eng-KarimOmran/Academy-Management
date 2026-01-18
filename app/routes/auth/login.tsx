@@ -16,9 +16,9 @@ import { Spinner } from "@/components/ui/spinner";
 import { userContext } from "@/context/user.context";
 import { useNavigate } from "react-router";
 import i18n from "@/lib/i18n";
-import type { User } from "@/type/user";
 import { FormikCustom, type ICustomForm } from "~/components/custom-form";
 import api from "@/service/auth";
+import type { User } from "~/type/entity";
 
 export function meta({}: Route.MetaArgs) {
   const { t } = i18n;
@@ -47,18 +47,12 @@ export default function Login() {
     validationSchema: loginSchema,
     inputs: [
       {
-        id: "username",
-        label: t("auth.username"),
         name: "username",
-        placeholder: t("auth.type the username"),
         required: true,
         type: "text",
       },
       {
-        id: "password",
-        label: t("auth.password"),
         name: "password",
-        placeholder: t("auth.type the password"),
         required: true,
         type: "password",
       },

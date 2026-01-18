@@ -23,7 +23,7 @@ export default function Entity() {
   const [debouncedSearch, setDebouncedSearch] = useState(search);
 
   useEffect(() => {
-    const handler = setTimeout(() => setDebouncedSearch(search), 1000);
+    const handler = setTimeout(() => setDebouncedSearch(search), 800);
     return () => clearTimeout(handler);
   }, [search]);
 
@@ -46,7 +46,7 @@ export default function Entity() {
   const { data, isLoading, error } = useQuery({
     queryKey,
     queryFn: () =>
-      entityConfig.api.getAll({ limit, page, search: debouncedSearch }),
+      entityConfig.api.search({ limit, page, search: debouncedSearch }),
     staleTime: Infinity,
     select: (res) => res.data.data,
   });
@@ -55,8 +55,6 @@ export default function Entity() {
     toast.error(error.message);
     return null;
   }
-
-  entityConfig.table.isLoading = isLoading;
 
   const rows = data?.items || [];
   const total = data?.count || 0;
@@ -80,6 +78,7 @@ export default function Entity() {
               type="text"
               onChange={(e) => setSearch(e.target.value)}
               value={search}
+              disabled={rows.length === 0 && debouncedSearch === ""}
             />
           </div>
 
@@ -90,12 +89,14 @@ export default function Entity() {
             >
               <span>+</span>
               <span>{t("action.add")}</span>
-              <span>{t(`${entityConfig.title}.${entityConfig.title}`)}</span>
+              <span>
+                {t(`${entityConfig.table.entity}.${entityConfig.table.entity}`)}
+              </span>
             </Link>
           </Button>
         </div>
 
-        <CustomTable {...entityConfig.table} />
+        <CustomTable {...entityConfig.table} isLoading={isLoading} />
 
         <Separator />
         <div className="flex items-center justify-between">

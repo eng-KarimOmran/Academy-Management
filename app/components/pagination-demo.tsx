@@ -22,7 +22,7 @@ export function PaginationDemo({
   const { t } = useTranslation();
   const totalPage = Math.ceil(total / limit);
   const pages = getPaginationRange(page, totalPage);
-  return (
+  return pages.length === 0 ? null : (
     <Pagination>
       <PaginationContent className="me-0 md:me-auto overflow-x-auto">
         <PaginationItem className="hidden md:block">
@@ -50,7 +50,7 @@ export function PaginationDemo({
                   {p}
                 </Button>
               </PaginationItem>
-            )
+            ),
           )}
         </div>
 
@@ -63,7 +63,6 @@ export function PaginationDemo({
             {t("action.previous")}
           </Button>
         </PaginationItem>
-
       </PaginationContent>
     </Pagination>
   );

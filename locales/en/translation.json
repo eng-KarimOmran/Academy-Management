@@ -61,10 +61,15 @@
 
     "Address must not exceed 200 characters": "Address must not exceed 200 characters"
   },
+  "course": {
+    "courses": "courses",
+    "course": "Course",
+    "there are no": "there are no courses"
+  },
   "academy": {
     "academies": "academies",
-    "no academies found": "no academies found",
-    "academy": "Academy"
+    "academy": "Academy",
+    "there are no": "there are no academies"
   },
   "user-role": {
     "SUPER_ADMIN": "General Manager",
@@ -73,10 +78,6 @@
   },
   "auth": {
     "logout": "logout",
-    "username": "username",
-    "password": "password",
-    "type the username": "type the username",
-    "type the password": "type the password",
     "login": "login",
     "Are you sure you want to log out": "Are you sure you want to log out?",
     "Log out of Academy Management as": "Log out of Academy Management as",
@@ -105,5 +106,20 @@
     "dashboard": "Dashboard",
     "settings": "Settings",
     "logout": "logout"
+  },
+  "generalValues": {
+    "id": "ID",
+    "name": "Name",
+    "owner": "Owner",
+    "address": "Address",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At",
+    "username": "Username",
+    "password": "Password",
+    "description": "Description",
+    "basePrice": "Base Price",
+    "discount": "Price After Discount",
+    "sessionsCount": "Sessions Count",
+    "sessionDuration": "Session Duration"
   }
 }

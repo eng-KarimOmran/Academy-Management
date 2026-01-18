@@ -2,6 +2,7 @@
   "control panel for": "لوحة التحكم الخاصة بـ",
   "dashboard": "لوحة التحكم",
   "administration": "إدارة",
+  "type": "اكتب",
   "<": ">",
   "settings": {
     "settings": "الإعدادات",
@@ -59,12 +60,18 @@
     "Session duration must be an integer": "مدة الحصة يجب أن تكون رقمًا صحيحًا",
     "Session duration must be at least 50 minutes": "مدة الحصة لا يجب أن تقل عن 50 دقيقة",
 
+    "Address is required": "العنوان مطلوب",
     "Address must not exceed 200 characters": "العنوان لا يجب أن يتخطى 200 حرف"
   },
   "academy": {
     "academies": "الأكاديميات",
-    "no academies found": "لم يتم العثور على أي أكاديميات",
-    "academy": "أكاديمية"
+    "academy": "أكاديمية",
+    "there are no": "لا توجد اكايميات"
+  },
+  "course": {
+    "courses": "البرامج",
+    "course": "برنامج",
+    "there are no": "لا توجد برامج"
   },
   "user-role": {
     "SUPER_ADMIN": "مدير العام",
@@ -72,10 +79,6 @@
     "INSTRUCTOR": "مدرب"
   },
   "auth": {
-    "username": "اسم المستخدم",
-    "password": "كلمة المرور",
-    "type the username": "اكتب اسم المستخدم",
-    "type the password": "اكتب كلمة المرور",
     "login": "تسجيل الدخول",
     "logout": "تسجيل الخروج",
     "Are you sure you want to log out": "هل أنت متأكد من رغبتك في تسجيل الخروج؟",
@@ -95,7 +98,7 @@
     "update": "تعديل",
     "watch": "عرض",
     "whatsapp": "وتساب",
-    "are you sure you want to delete":"هل أنت متأكد من حذف"
+    "are you sure you want to delete": "هل أنت متأكد من حذف"
   },
   "entity": {
     "users": "المستخدمين",
@@ -106,7 +109,19 @@
     "settings": "الإعدادات",
     "logout": "تسجيل الخروج"
   },
-  "table": {
-    "no data available": "no data available"
+  "generalValues": {
+    "id": "المعرف",
+    "name": "الاسم",
+    "owner": "المالك",
+    "address": "العنوان",
+    "createdAt": "تاريخ الإنشاء",
+    "updatedAt": "آخر تحديث",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "description": "الوصف",
+    "basePrice": "السعر الأساسي",
+    "discount": "السعر بعد الخصم",
+    "sessionsCount": "عدد الحصص",
+    "sessionDuration": "مدة الحصة"
   }
 }

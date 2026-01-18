@@ -1,8 +1,8 @@
 import axios from "axios";
-import type { LoginDTO } from "~/DTO/auth.DTO";
-import axiosApi from "~/lib/axios";
-import type { SuccessResponse } from "~/type/type";
-import type { User } from "~/type/user";
+import type { LoginDTO } from "@/DTO/auth.DTO";
+import axiosApi from "@/lib/axios";
+import type { User } from "@/type/entity";
+import type { SuccessResponse } from "@/type/type";
 
 const login = (data: LoginDTO): Promise<SuccessResponse<User>> =>
   axiosApi.post("/auth/login", data);

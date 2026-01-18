@@ -10,11 +10,8 @@ import type { ErrorResponse, SuccessResponse } from "@/type/type";
 import { type RefObject } from "react";
 
 export interface IInput<T> {
-  id: string;
   name: Extract<keyof T, string>;
-  label: string;
   type?: "text" | "number" | "password" | "email";
-  placeholder?: string;
   disabled?: boolean;
   required?: boolean;
 }
@@ -65,15 +62,15 @@ export const FormikCustom = <T extends FormikValues, J>({
       {(props: FormikProps<T>) => (
         <Form ref={formRef} className="flex flex-col gap-6">
           {inputs.map((input) => (
-            <div key={input.id} className="grid gap-2">
-              <Label htmlFor={input.id} className="capitalize">
-                {input.label}
+            <div key={input.name} className="grid gap-2">
+              <Label htmlFor={input.name} className="capitalize">
+                {t(`generalValues.${input.name}`)}
               </Label>
 
               <Input
-                id={input.id}
+                id={input.name}
                 type={input.type}
-                placeholder={input.placeholder}
+                placeholder={`${t("type")} ${t(`generalValues.${input.name}`)}`}
                 required={input.required}
                 disabled={input.disabled || isSubmitting}
                 {...props.getFieldProps(input.name)}
